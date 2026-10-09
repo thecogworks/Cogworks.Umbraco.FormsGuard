@@ -17,6 +17,26 @@ The visitor never sees any of this. Nothing is blocked at submit time and no ent
 
 ---
 
+## Screenshots
+
+**Review queue:** entries the checker was unsure about, with their scores and Approve or Confirm spam.
+
+![Review queue](https://raw.githubusercontent.com/thecogworks/Cogworks.Umbraco.FormsGuard/main/assets/screenshots/review-queue.png)
+
+**Log:** every decision with its status, source, provider and scores, filtered by form, status and date.
+
+![Log, Decisions tab](https://raw.githubusercontent.com/thecogworks/Cogworks.Umbraco.FormsGuard/main/assets/screenshots/log-decisions.png)
+
+**Activity:** an audit trail of decisions, reviewer actions, settings changes and retention deletes.
+
+![Log, Activity tab](https://raw.githubusercontent.com/thecogworks/Cogworks.Umbraco.FormsGuard/main/assets/screenshots/log-activity.png)
+
+**Per-form settings:** turn checking on, describe the form, and choose which fields are sent.
+
+![Form settings](https://raw.githubusercontent.com/thecogworks/Cogworks.Umbraco.FormsGuard/main/assets/screenshots/settings.png)
+
+---
+
 ## Requirements
 
 - Umbraco CMS 17.x

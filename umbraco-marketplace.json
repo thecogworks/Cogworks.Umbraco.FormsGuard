@@ -1,17 +1,59 @@
 {
   "$schema": "https://marketplace.umbraco.com/umbraco-marketplace-schema.json",
   "Title": "Forms Guard: spam filtering for Umbraco Forms",
+  "Description": "Stops AI-written spam in Umbraco Forms. Entries are saved as normal, then checked in the background by hard rules and an AI decision provider, and approved, quarantined or held for review. Nothing is blocked at submit time and no entry is lost.",
   "Category": "Artificial Intelligence",
   "AlternateCategory": "Editor Tools",
+  "PackageType": "Package",
   "LicenseTypes": [
     "Free"
   ],
+  "Tags": [
+    "forms",
+    "umbraco-forms",
+    "spam",
+    "anti-spam",
+    "spam-filter",
+    "ai",
+    "moderation",
+    "contact-form"
+  ],
   "IssueTrackerUrl": "https://github.com/thecogworks/Cogworks.Umbraco.FormsGuard/issues",
   "DocumentationUrl": "https://github.com/thecogworks/Cogworks.Umbraco.FormsGuard#readme",
+  "AuthorDetails": {
+    "Name": "Cogworks",
+    "Description": "Built and maintained by Adam Shallcross, CEO & Founder at Cogworks.",
+    "Url": "https://www.wearecogworks.com",
+    "ImageUrl": "https://github.com/thecogworks.png",
+    "Contributors": [
+      {
+        "Name": "Adam Shallcross",
+        "Url": "https://github.com/ashallcross"
+      }
+    ]
+  },
   "RelatedPackages": [
     {
       "PackageId": "Cogworks.Umbraco.FormsGuard.UmbracoAI",
       "Description": "Optional decision provider that uses an Umbraco.AI profile instead of TypeSafe."
+    }
+  ],
+  "Screenshots": [
+    {
+      "ImageUrl": "https://raw.githubusercontent.com/thecogworks/Cogworks.Umbraco.FormsGuard/main/assets/screenshots/review-queue.png",
+      "Caption": "Review queue: entries the checker was unsure about, with their scores and Approve or Confirm spam"
+    },
+    {
+      "ImageUrl": "https://raw.githubusercontent.com/thecogworks/Cogworks.Umbraco.FormsGuard/main/assets/screenshots/log-decisions.png",
+      "Caption": "Log: every decision with its status, source, provider and scores, filtered by form, status and date"
+    },
+    {
+      "ImageUrl": "https://raw.githubusercontent.com/thecogworks/Cogworks.Umbraco.FormsGuard/main/assets/screenshots/log-activity.png",
+      "Caption": "Activity: an audit trail of decisions, reviewer actions, settings changes and retention deletes"
+    },
+    {
+      "ImageUrl": "https://raw.githubusercontent.com/thecogworks/Cogworks.Umbraco.FormsGuard/main/assets/screenshots/settings.png",
+      "Caption": "Per-form settings: turn checking on, describe the form, and choose which fields are sent"
     }
   ]
 }
