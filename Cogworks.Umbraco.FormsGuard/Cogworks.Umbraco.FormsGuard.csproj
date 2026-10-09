@@ -1,0 +1,69 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <IsPackable>true</IsPackable>
+    <PackageId>Cogworks.Umbraco.FormsGuard</PackageId>
+    <Title>Forms Guard: spam filtering for Umbraco Forms</Title>
+    <Description>Entries on guarded Umbraco Forms are saved, then decided in the background (hard rules, then an AI decision provider) and approved, quarantined or left for review.</Description>
+    <Authors>Cogworks</Authors>
+    <PackageTags>umbraco umbraco-marketplace umbraco-forms spam ai</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageProjectUrl>https://github.com/thecogworks/Cogworks.Umbraco.FormsGuard</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/thecogworks/Cogworks.Umbraco.FormsGuard</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <!-- Serve wwwroot under /App_Plugins/FormsGuard; wwwroot is built by `npm run build` in Client/ and gitignored. -->
+    <StaticWebAssetBasePath>App_Plugins/FormsGuard</StaticWebAssetBasePath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Umbraco.Cms.Core" />
+    <PackageReference Include="Umbraco.Cms.Web.Common" />
+    <PackageReference Include="Umbraco.Cms.Api.Management" />
+    <PackageReference Include="Umbraco.Forms.Core" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Client/ holds the TypeScript source and node_modules; only the built bundle in wwwroot/ ships. -->
+    <Content Remove="Client\**" />
+    <Compile Remove="Client\**" />
+    <None Remove="Client\**" />
+    <EmbeddedResource Remove="Client\**" />
+    <None Include="Client\public\umbraco-package.json" Pack="false" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md" Pack="true" PackagePath="\" />
+    <None Include="..\assets\icon.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <!-- A pack rebuilds the client first, so it never ships a stale wwwroot; static web assets are resolved after BeforeBuild. -->
+  <Target Name="FormsGuardBuildClientForPack" BeforeTargets="BeforeBuild" Condition="'$(_IsPacking)' == 'true'">
+    <Exec Command="npm ci" WorkingDirectory="$(MSBuildProjectDirectory)\Client" Condition="!Exists('$(MSBuildProjectDirectory)\Client\node_modules')" />
+    <Exec Command="npm run build" WorkingDirectory="$(MSBuildProjectDirectory)\Client" />
+    <!-- Vite's chunk names are content-hashed, so re-glob wwwroot (same metadata as the SDK's default item). A wildcard
+         Remove only matches files still on disk, so drop the evaluated wwwroot items by path. -->
+    <ItemGroup>
+      <_FormsGuardStaleContent Include="@(Content)" Condition="$([System.String]::Copy('%(Identity)').Replace('\', '/').StartsWith('wwwroot/'))" />
+      <Content Remove="@(_FormsGuardStaleContent)" />
+      <Content Include="wwwroot\**" ExcludeFromSingleFile="true" CopyToPublishDirectory="PreserveNewest" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+    </ItemGroup>
+  </Target>
+
+  <!-- wwwroot is gitignored, so a pack without `npm run build` (for example a pack with no build) would ship no backoffice. -->
+  <Target Name="FormsGuardRequireClientBundle" BeforeTargets="GenerateNuspec">
+    <Error Condition="!Exists('$(MSBuildProjectDirectory)\wwwroot\forms-guard.js')"
+           Text="wwwroot/forms-guard.js is missing. Run `npm install` and `npm run build` in Cogworks.Umbraco.FormsGuard/Client before packing." />
+  </Target>
+
+</Project>

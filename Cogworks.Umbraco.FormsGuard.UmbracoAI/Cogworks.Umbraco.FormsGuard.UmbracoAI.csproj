@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <IsPackable>true</IsPackable>
+    <PackageId>Cogworks.Umbraco.FormsGuard.UmbracoAI</PackageId>
+    <Title>Forms Guard: Umbraco.AI decision provider</Title>
+    <Description>Optional Forms Guard decision provider that answers spam and triage questions with an AI model configured through an Umbraco.AI profile.</Description>
+    <Authors>Cogworks</Authors>
+    <PackageTags>umbraco umbraco-marketplace umbraco-forms spam ai</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageProjectUrl>https://github.com/thecogworks/Cogworks.Umbraco.FormsGuard</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/thecogworks/Cogworks.Umbraco.FormsGuard</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Umbraco.AI" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Cogworks.Umbraco.FormsGuard\Cogworks.Umbraco.FormsGuard.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md" Pack="true" PackagePath="\" />
+    <None Include="..\assets\icon.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://marketplace.umbraco.com/umbraco-marketplace-schema.json",
+  "Title": "Forms Guard: spam filtering for Umbraco Forms",
+  "Category": "Artificial Intelligence",
+  "AlternateCategory": "Editor Tools",
+  "LicenseTypes": [
+    "Free"
+  ],
+  "IssueTrackerUrl": "https://github.com/thecogworks/Cogworks.Umbraco.FormsGuard/issues",
+  "DocumentationUrl": "https://github.com/thecogworks/Cogworks.Umbraco.FormsGuard#readme",
+  "RelatedPackages": [
+    {
+      "PackageId": "Cogworks.Umbraco.FormsGuard.UmbracoAI",
+      "Description": "Optional decision provider that uses an Umbraco.AI profile instead of TypeSafe."
+    }
+  ]
+}

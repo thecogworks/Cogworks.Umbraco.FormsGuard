@@ -1,0 +1,42 @@
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Contact>
+
+@using Clean.Core.Models.ViewModels
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels
+
+@{
+    Layout = "master.cshtml";
+    // Form Picker property on the Contact doctype (alias "form") returns the picked form's Guid.
+    var formId = Model.Value<Guid>("form");
+}
+
+@await Html.PartialAsync("~/Views/Partials/pageHeader.cshtml", new PageHeaderViewModel(Model.Name, Model.Title, Model.Subtitle, Model.MainImage))
+
+<main class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                @Model.InstructionMessage
+                <div class="my-5">
+                    @if (!ViewData.ModelState.IsValid)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            <div asp-validation-summary="All" class="mb-0"></div>
+                        </div>
+                    }
+                    @if (formId != Guid.Empty)
+                    {
+                        <umb-forms-render form-id="@formId" />
+                    }
+                    else
+                    {
+                        <p class="text-danger">
+                            No form selected. Add a <strong>Form Picker</strong> property
+                            (alias <code>form</code>) to the Contact doctype, pick
+                            <em>Contact Us</em>, and republish.
+                        </p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

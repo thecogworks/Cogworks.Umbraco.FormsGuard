@@ -1,0 +1,15 @@
+{
+  "id": "Cogworks.FormsGuard",
+  "name": "Forms Guard",
+  "version": "0.1.0",
+  "allowPublicAccess": false,
+  "allowTelemetry": true,
+  "extensions": [
+    {
+      "name": "Forms Guard Bundle",
+      "alias": "Cogworks.FormsGuard.Bundle",
+      "type": "bundle",
+      "js": "/App_Plugins/FormsGuard/forms-guard.js"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://marketplace.umbraco.com/umbraco-marketplace-schema.json",
+  "Title": "Forms Guard: Umbraco.AI decision provider",
+  "Category": "Artificial Intelligence",
+  "LicenseTypes": [
+    "Free"
+  ],
+  "IssueTrackerUrl": "https://github.com/thecogworks/Cogworks.Umbraco.FormsGuard/issues",
+  "DocumentationUrl": "https://github.com/thecogworks/Cogworks.Umbraco.FormsGuard#readme",
+  "RelatedPackages": [
+    {
+      "PackageId": "Cogworks.Umbraco.FormsGuard",
+      "Description": "The Forms Guard package this provider plugs into."
+    }
+  ]
+}
