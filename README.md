@@ -4,7 +4,7 @@
 
 Package: `Cogworks.Umbraco.FormsGuard`
 
-[![Umbraco 17+](https://img.shields.io/badge/Umbraco-17%2B-3544B1.svg)](https://umbraco.com)
+[![Umbraco 17.7+](https://img.shields.io/badge/Umbraco-17.7%2B-3544B1.svg)](https://umbraco.com)
 [![.NET 10](https://img.shields.io/badge/.NET-10-512BD4.svg)](https://dotnet.microsoft.com)
 
 ---
@@ -39,11 +39,11 @@ The visitor never sees any of this. Nothing is blocked at submit time and no ent
 
 ## Requirements
 
-- Umbraco CMS 17.x
-- Umbraco Forms 17.x
+- Umbraco CMS 17.7 or later (17.x)
+- Umbraco Forms 17.5.2 or later (17.x)
 - .NET 10
 - **Manual approval turned on for every guarded form**, with notification workflows set to run on approve. Forms Guard approves the entry when it decides it is genuine, which is what sends the email. If manual approval is off, the entry is saved as Approved straight away, Forms Guard logs a warning and skips it.
-- For the default provider, a Jev (TypeSafe AI) API key. For the optional Umbraco.AI provider, an Umbraco.AI connection and profile instead.
+- For the default provider, a Jev (TypeSafe AI) API key. For the optional Umbraco.AI provider, Umbraco.AI 17.4 or later with a connection and profile instead.
 
 ---
 
